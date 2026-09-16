@@ -67,8 +67,11 @@ const getProductById = async (req, res, next) => {
 
 const updateProductById = async (req, res, next) => {
         const productSchema = joi.object({
-        title: joi.string().min(5).optional(),
-        content: joi.string().min(5).optional(),
+        title: joi.string().required(),
+        price: joi.number().min(0).required(),
+        description: joi.string().required(),
+        category: joi.string().required(),
+        inStock: joi.boolean().optional()
     });
 
     const {error, value} = productSchema.validate(req.body);
@@ -90,7 +93,7 @@ const updateProductById = async (req, res, next) => {
         }
         return res.status(200).json({
             message: "Product updated successfully",
-            data: product
+            data: updatedProduct
         });
     } catch (error) {
         console.error("Error updating product:", error);
