@@ -228,7 +228,7 @@ The API returns appropriate HTTP status codes for different situations:
 
 ## Live API
 
-The deployed Render URL will be added here after deployment.
+https://e-commerce-api-qp7j.onrender.com/
 
 ## Screenshots
 
