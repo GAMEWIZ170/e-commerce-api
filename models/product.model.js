@@ -2,18 +2,42 @@ const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema(
     {
-        title: {type:String, required:true},
-        price: {type:Number, min:0, required:true},
-        description: {type:String, required:true},
-        category: {type:String, required:true},
-        inStock: {type:Boolean, default:true},
+        name: {
+            type: String,
+            required: true
+        },
+
+        price: {
+            type: Number,
+            required: true,
+            min: 0
+        },
+
+        description: {
+            type: String
+        },
+
+        category: {
+            type: String,
+            required: true
+        },
+
+        inStock: {
+            type: Boolean,
+            default: true
+        }
     },
-    {timestamps: true}
-)
+    {
+        timestamps: true
+    }
+);
 
-const product = mongoose.model("Product", productSchema);
+// Index product name for text search
+productSchema.index({ name: 'text' });
 
-module.exports = product
+const Product = mongoose.model('Product', productSchema);
+
+module.exports = Product;
 
 
 
